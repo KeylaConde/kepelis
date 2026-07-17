@@ -1,6 +1,7 @@
-import './App.css'
-import MovieCard from './MovieCard';
+import './App.css';
+import HeroCarousel from './HeroCarousel';
 import { useEffect, useState } from 'react';
+import './index.css';
 
 function App() {
   const [peliculas, setPeliculas] = useState([]);
@@ -20,8 +21,12 @@ function App() {
   }, [providerId, tipo]); // <--- Importante! Esto hace que se recargue si cambia de plataforma
 
   return (
-    <div>
+    <div className="App">
+
       <h1>Tendencias en Kepelis</h1>
+      <div className="hero-carousel-container">
+        {peliculas.length > 0 && <HeroCarousel peliculas={peliculas} />}
+      </div>
       <div className="filtros-movie-tv" style={{ marginBottom: '20px', display: 'flex', gap: '10px'}}>
         <button className={tipo === 'movie' ? 'btn-activo' : ''} onClick={() => setTipo('movie')}>🎬 Ver Películas</button>
         <button className={tipo === 'tv' ? 'btn-activo' : ''} onClick={() => setTipo('tv')}>📺 Ver Series/Novelas</button>
@@ -47,6 +52,7 @@ function App() {
         <button className={providerId === 283 ? 'btn-activo' : ''} 
         onClick={() => setProviderId(283)}>Crunchyroll</button>
       </div>
+
       <div className="contenedor-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
         {peliculas.map((pelicula) => (
           <div className="pelicula-card" key={pelicula.id}>
@@ -64,3 +70,4 @@ function App() {
 }
 
 export default App
+  
