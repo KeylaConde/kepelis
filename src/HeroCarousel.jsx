@@ -5,8 +5,7 @@ import ReactPlayer from 'react-player';
 import './HeroCarousel.css'
 
 // Importamos los estilos de Swiper
-import 'swiper/css';
-import 'swiper/css/navigation';
+import 'swiper/css/bundle';
 
 const SlideConVideo = ({ pelicula}) => {
     const [videoKey, setVideoKey] = useState(null);
@@ -35,7 +34,7 @@ return (
             style={{ position: 'absolute', top: 0, left: 0 }}
            />
         ) : (
-            <div style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${pelicula.backdrop_path})`, width: '100%', height: '100%', backgroundSize: 'cover' }} />
+            <div style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280${pelicula.backdrop_path})`, width: '100%', height: '100%', backgroundSize: 'cover', backgroundPosition: 'center 25%' }} />
         )}
         <div className="hero-content">
             <h1>{pelicula.title || pelicula.name}</h1>
@@ -46,7 +45,7 @@ return (
 };
 
 const HeroCarousel = ({ peliculas }) => (
-    <Swiper modules={[Autoplay, Navigation]} navigation autoplay={{ delay: 5000 }} loop={true}>
+    <Swiper modules={[Autoplay, Navigation ]} navigation autoplay={{ delay: 5000 }}  loop={true}>
         {peliculas.slice(0, 5).map((pelicula) => (
             <SwiperSlide key={pelicula.id}>
                 <SlideConVideo pelicula={pelicula} />

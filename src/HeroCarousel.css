@@ -1,5 +1,5 @@
 .hero-carousel-container {
-    width: 95%;
+    width: 100%;
     border-radius: 20px;
     overflow: hidden;
     position: relative;
@@ -35,14 +35,21 @@
 .hero-content {
     position: absolute; /* Para que quede encima del degradado */
     z-index: 2;
-    text-align: center;
+    text-align: start;
     color: white;
-    width: 80%;
+    width: 50%;
+    left: 40px;
+    top: 60px;
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     margin-bottom: 15px;
+    text-align: start;
+    color: white;
+    inline-size: 10px;
+    width: 100%;
+    line-height: 1;
 }
 
 .hero-content p {
@@ -56,4 +63,33 @@
     padding: 0;
     border-radius: 20px;
     overflow: hidden;
+}
+
+.swiper-button-next {
+    margin-right: 20px;
+}
+
+.swiper-button-prev {
+    margin-left: 20px !important;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: white !important;
+    background-color: rgba(0,0,0,0.3);
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50%;
+    backdrop-filter: blur(5px); /* Efecto cristal moderno */
+    transition: all 0.3s ease !important;
+    padding: 5px;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 15px !important;
+    font-weight: bold;
 }
