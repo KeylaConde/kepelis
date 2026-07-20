@@ -1,7 +1,11 @@
 import './App.css';
 import HeroCarousel from './HeroCarousel';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from 'react';
 import './index.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 function App() {
   const [peliculas, setPeliculas] = useState([]);
@@ -53,18 +57,48 @@ function App() {
         onClick={() => setProviderId(283)}>Crunchyroll</button>
       </div>
 
-      <div className="contenedor-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px' }}>
-        {peliculas.map((pelicula) => (
-          <div className="pelicula-card" key={pelicula.id}>
+    <Swiper
+    modules={[Navigation]}
+    navigation
+    spaceBetween={20}
+    slidesPerView={8}
+    breakpoints={{
+      // En pantallas muy pequeñas (celulares en vertical)
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+      },
+      // En tablets
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 15,
+      },
+      // En computadoras / pantallas grandes
+      1024: {
+        slidesPerView: 6,
+        spaceBetween: 20,
+      },
+      // En pantallas xl
+      1600: {
+        slidesPerView: 8,
+        spaceBetween: 25,
+      }
+    }}
+  className="peliculas-swiper"
+    >
+      {peliculas.map((pelicula) => (
+        <SwiperSlide key={pelicula.id}>
+          <div className="pelicula-card">
             <img 
             src={`${BASE_IMG}${pelicula.poster_path}`} 
             alt={pelicula.title}
-            style={{ width: '100%', borderRadius: '10px' }} 
-            />
-            <h3>{pelicula.title || pelicula.name}</h3>
+            style={{ width: '100%', borderRadius: '10px' }}
+             />
+             <h3>{pelicula.title || pelicula.name}</h3>
           </div>
-        ))}
-      </div>
+        </SwiperSlide>
+      ))}
+      </Swiper>
     </div>   
   );
 }

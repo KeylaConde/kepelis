@@ -49,16 +49,6 @@ button {
 
 button:hover { background: #e50914; }
 
-.contenedor-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adaptable */
-  margin: 30px 20px;
-}
-
-.pelicula-card {
-  transition: transform 0.3s;
-}
-
-.pelicula-card:hover {
-  transform: scale(1.05); /* Efecto de acercamiento al pasar el mouse */
+.peliculas-swiper {
+  top: 20px;
 }
