@@ -58,6 +58,13 @@
     text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 
+/* Ajustamos la posición vertical de las flechas del carrusel de películas */
+.peliculas-swiper .swiper-button-next,
+.peliculas-swiper .swiper-button-prev {
+    top: 40% !important;
+    transform: translateY(-50%);
+}
+
 .swiper {
     width: 100%;
     padding: 0;

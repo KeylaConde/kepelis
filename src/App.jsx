@@ -1,4 +1,5 @@
 import './App.css';
+import './HeroCarousel.css';
 import HeroCarousel from './HeroCarousel';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';

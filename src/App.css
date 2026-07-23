@@ -50,5 +50,5 @@ button {
 button:hover { background: #e50914; }
 
 .peliculas-swiper {
-  top: 20px;
+  top: 40% !important;
 }
