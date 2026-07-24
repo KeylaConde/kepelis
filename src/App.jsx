@@ -30,7 +30,7 @@ function App() {
 
       <h1>Tendencias en Kepelis</h1>
       <div className="hero-carousel-container">
-        {peliculas.length > 0 && <HeroCarousel peliculas={peliculas} />}
+        {peliculas.length > 0 && <HeroCarousel peliculas={peliculas} tipo={tipo} />}
       </div>
       <div className="filtros-movie-tv" style={{ marginBottom: '20px', display: 'flex', gap: '10px'}}>
         <button className={tipo === 'movie' ? 'btn-activo' : ''} onClick={() => setTipo('movie')}>🎬 Ver Películas</button>

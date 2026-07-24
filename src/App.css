@@ -50,5 +50,26 @@ button {
 button:hover { background: #e50914; }
 
 .peliculas-swiper {
-  top: 40% !important;
+  top: 20px;
+}
+
+/* Estilo base de las tarjetas */
+.pelicula-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* Efecto al pasar el cursor (Hover) */
+.pelicula-card:hover {
+  transform: scale(1.05); /*Agranda ligeramente la tarjeta un 5% */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);/* Agrega una sombra profunda */
+  z-index: 10; /* Asegura que la tarjeta flotante se muestre por encima de las demás */
+}
+
+.pelicula-card img {
+    transition: border-radius 0.3s ease;
+}
+
+.pelicula-card:hover img {
+  border-radius: 6px; /* Ajusta ligeramente los bordes */
 }
