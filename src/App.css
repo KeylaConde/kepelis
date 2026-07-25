@@ -19,7 +19,7 @@ h1 {
 }
 
 .btn-activo {
-  background-color: #e50914;
+  background-color: #e50914 !important;
   border: 2px solid white;
 }
 

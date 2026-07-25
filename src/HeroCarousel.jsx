@@ -72,7 +72,7 @@ return (
 };
 
 const HeroCarousel = ({ peliculas }) => (
-    <Swiper modules={[Autoplay, Navigation ]} navigation autoplay={{ delay: 5000 }}  loop={true}>
+    <Swiper modules={[Autoplay, Navigation ]} navigation autoplay={{ delay: 3000 }}  loop={true}>
         {peliculas.slice(0, 5).map((pelicula) => (
             <SwiperSlide key={pelicula.id}>
                 <SlideConVideo pelicula={pelicula} />
