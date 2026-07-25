@@ -1,6 +1,8 @@
 import './App.css';
 import './HeroCarousel.css';
+import './SeccionTrailers.css';
 import HeroCarousel from './HeroCarousel';
+import SeccionTrailers from './SeccionTrailers';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from 'react';
@@ -100,6 +102,11 @@ function App() {
         </SwiperSlide>
       ))}
       </Swiper>
+
+      {/* SECCIÓN DE TRÁILERS DEBAJO DEL CARRUSEL */}
+      {peliculas.length > 0 && (
+        <SeccionTrailers peliculas={peliculas} tipo={tipo} />
+      )}
     </div>   
   );
 }
