@@ -58,6 +58,7 @@ button:hover { background: #e50914; }
 .pelicula-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  position: relative;
 }
 
 /* Efecto al pasar el cursor (Hover) */
@@ -73,4 +74,18 @@ button:hover { background: #e50914; }
 
 .pelicula-card:hover img {
   border-radius: 6px; /* Ajusta ligeramente los bordes */
+}
+
+.pelicula-rating-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffc107;
+  padding: 3px 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  z-index: 2;
 }

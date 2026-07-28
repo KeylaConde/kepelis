@@ -94,9 +94,15 @@ function App() {
           <div className="pelicula-card">
             <img 
             src={`${BASE_IMG}${pelicula.poster_path}`} 
-            alt={pelicula.title}
+            alt={pelicula.title || pelicula.name}
             style={{ width: '100%', borderRadius: '10px' }}
              />
+
+             {/* Insignia de calificación */}
+             <div className='pelicula-rating-badge'>
+              ⭐ {pelicula.vote_average ? pelicula.vote_average.toFixed(1) : 'N/A'}
+             </div>
+
              <h3>{pelicula.title || pelicula.name}</h3>
           </div>
         </SwiperSlide>
