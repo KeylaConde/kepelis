@@ -43,18 +43,21 @@
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    font-weight: bold;
     margin-bottom: 15px;
     text-align: start;
     color: white;
     inline-size: 10px;
     width: 100%;
     line-height: 1;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 
 .hero-content p {
-    font-size: 1.2rem;
-    line-height: 1.5;
+    font-size: 1.1rem;
+    color: white;
+    line-height: 1.4;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 
@@ -99,4 +102,19 @@
 .swiper-button-next::after, .swiper-button-prev::after {
     font-size: 15px !important;
     font-weight: bold;
+}
+
+/* Dispositivos móviles */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.85rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Limita el texto a 3 líneas para que no desborde */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 }
