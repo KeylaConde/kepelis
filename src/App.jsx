@@ -3,6 +3,7 @@ import './HeroCarousel.css';
 import './SeccionTrailers.css';
 import HeroCarousel from './HeroCarousel';
 import SeccionTrailers from './SeccionTrailers';
+import Detalle from './Detalle';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from 'react';
@@ -14,6 +15,7 @@ function App() {
   const [peliculas, setPeliculas] = useState([]);
   const [providerId, setProviderId] = useState(8); // 8 es Netflix por defecto
   const [tipo, setTipo] = useState('movie'); // 'movie' para peliculas, 'tv' para series
+  const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null);
   const BASE_IMG = "https://image.tmdb.org/t/p/w500"; // Esta es la base oficial de TMDB
 
   useEffect(() => {
@@ -29,6 +31,14 @@ function App() {
 
   return (
     <div className="App">
+    {peliculaSeleccionada ? (
+      <Detalle
+      id={peliculaSeleccionada.id}
+      tipo={peliculaSeleccionada.tipo}
+      onVolver={() => setPeliculaSeleccionada(null)}
+      />
+    ) : (
+     <>
 
       <h1>Tendencias en Kepelis</h1>
       <div className="hero-carousel-container">
@@ -91,7 +101,8 @@ function App() {
     >
       {peliculas.map((pelicula) => (
         <SwiperSlide key={pelicula.id}>
-          <div className="pelicula-card">
+          <div className="pelicula-card" onClick={() => setPeliculaSeleccionada({ id: pelicula.id, tipo: tipo })}
+            >
             <img 
             src={`${BASE_IMG}${pelicula.poster_path}`} 
             alt={pelicula.title || pelicula.name}
@@ -113,7 +124,10 @@ function App() {
       {peliculas.length > 0 && (
         <SeccionTrailers peliculas={peliculas} tipo={tipo} />
       )}
+      </>
+    )}
     </div>   
+    
   );
 }
 
