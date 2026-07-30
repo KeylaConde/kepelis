@@ -89,18 +89,47 @@ background-color: #f40612;
     color: #fff;
 }
 
-.actores-lista {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+.actores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
 }
 
-.actor-tag {
+.actor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.actor-foto {
+    width: 120px !important;
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 8px;
+    border: 2px solid #444;
+}
+
+.actor-foto-placeholder {
+    width: 80px;
+    height: 80px;
     background-color: #333;
-    color: #fff;
+    border-radius: 50%;
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.actor-nombre {
+    background-color: #333;
+    color: #eee;
     padding: 6px 14px;
+    font-weight: 500;
     border-radius: 20px;
+    line-height: 1.2;
     font-size: 0.9rem;
     border: 1px solid #444;
 }
@@ -121,7 +150,7 @@ background-color: #f40612;
         justify-content: center;
     }
 
-    .actores-lista {
-        justify-content: center;
+    .actores-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     }
 }

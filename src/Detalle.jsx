@@ -17,7 +17,7 @@ function DetallePelicula({ id, tipo, onVolver }) {
         .then(res => res.json())
         .then(data => {
             if (data && data.cast) {
-                setActores(data.cast.slice(0, 5)); // Tomamos los primeros 5 actores principales
+                setActores(data.cast.slice(0, 10)); // Tomamos los primeros 10 actores principales
             }
         });
     },[id, tipo]);
@@ -53,9 +53,21 @@ function DetallePelicula({ id, tipo, onVolver }) {
 
                     <div className='actores-seccion'>
                         <h3>Reporte principal:</h3>
-                        <div className='actores-lista'>
+                        <div className='actores-grid'>
                             {actores.map(actor => (
-                                <span key={actor.id} className='actor-tag'>{actor.name}</span>
+                                <div key={actor.id} className='actor-card'>
+                                    {actor.profile_path ? (
+                                        <img
+                                        src={`https://image.tmdb.org/t/p/w185${actor.profile_path}`}
+                                        alt={actor.name}
+                                        className='actor-foto'
+                                        />
+                                    ) : (
+                                        // Imagen por defecto si el actor no tiene foto en TMDB
+                                        <div className='actor-foto-placeholder'>👤</div>
+                                    )}
+                                    <span className='actor-nombre'>{actor.name}</span>
+                                  </div>  
                             ))}
                         </div>
                     </div>
