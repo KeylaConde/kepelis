@@ -1,6 +1,7 @@
 import './App.css';
 import './HeroCarousel.css';
 import './SeccionTrailers.css';
+import Navbar from './Navbar';
 import HeroCarousel from './HeroCarousel';
 import SeccionTrailers from './SeccionTrailers';
 import Detalle from './Detalle';
@@ -12,11 +13,18 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 function App() {
+  const [seccion, setSeccion] = useState('home');
   const [peliculas, setPeliculas] = useState([]);
   const [providerId, setProviderId] = useState(8); // 8 es Netflix por defecto
   const [tipo, setTipo] = useState('movie'); // 'movie' para peliculas, 'tv' para series
   const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null);
   const BASE_IMG = "https://image.tmdb.org/t/p/w500"; // Esta es la base oficial de TMDB
+
+  // Función para manejar la navegación desde la Navbar
+  const handleNavegar = (nuevaSeccion) => {
+    setSeccion(nuevaSeccion);
+    setPeliculaSeleccionada(null); // Limpiamos detalle si navegan
+  }
 
   useEffect(() => {
     const obtenerPeliculas = async () => {
@@ -31,6 +39,8 @@ function App() {
 
   return (
     <div className="App">
+      {/* Agregamos la barra de navegación aquí */}
+      <Navbar onNavegar={handleNavegar} seccionActual={seccion} />
     {peliculaSeleccionada ? (
       <Detalle
       id={peliculaSeleccionada.id}
@@ -39,8 +49,10 @@ function App() {
       />
     ) : (
      <>
-
-      <h1>Tendencias en Kepelis</h1>
+       {seccion === 'home' && (
+        <>
+       
+      <h1>Tendencias</h1>
       <div className="hero-carousel-container">
         {peliculas.length > 0 && <HeroCarousel peliculas={peliculas} tipo={tipo} />}
       </div>
@@ -69,6 +81,7 @@ function App() {
         <button className={providerId === 283 ? 'btn-activo' : ''} 
         onClick={() => setProviderId(283)}>Crunchyroll</button>
       </div>
+
 
     <Swiper
     modules={[Navigation]}
@@ -121,15 +134,27 @@ function App() {
       </Swiper>
 
       {/* SECCIÓN DE TRÁILERS DEBAJO DEL CARRUSEL */}
-      {peliculas.length > 0 && (
+      {peliculas.length > 0 && seccion === 'home' && (
         <SeccionTrailers peliculas={peliculas} tipo={tipo} />
       )}
-      </>
-    )}
-    </div>   
-    
-  );
-}
 
-export default App
+              </>
+)}
+
+      {/* Vista cuando el usuario hace clic en Trailers en la Navbar */}
+      {seccion === 'trailers' && (
+         <div style={{ padding: '30px' }}>
+         {peliculas.length > 0 && (
+          <SeccionTrailers peliculas={peliculas} tipo={tipo} />
+      )}
+
+      </div>
+    )}  
+    </>
+    )}
+   </div>
+  );
+  }
+
+export default App;
   

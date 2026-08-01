@@ -1,0 +1,77 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #141414;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #222;
+}
+
+.navbar-logo {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo img {
+    height: 60px;
+    width: 150px;
+    display: block;
+    transition: transform 0.2s;
+}
+
+.navbar-logo img:hover {
+    transform: scale(1.03);
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: #b3b3b3;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav-btn.active {
+    color: #fff;
+    background-color: #e50914;
+}
+
+/* Responsive para la Navbar en móviles */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 12px 20px;
+    }
+
+    .navbar-logo img {
+        height: 45px; /* Reducimos un poco el logo en celulares */
+        width: 120px;
+    }
+
+    .navbar-links {
+        gap: 8px;
+    }
+
+    .nav-btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}

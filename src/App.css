@@ -15,7 +15,8 @@ body {
 
 h1 {
   text-align: center;
-  color: #e50914;
+  color: #fff;
+  font-size: 2rem;
 }
 
 .btn-activo {
@@ -88,4 +89,21 @@ button:hover { background: #e50914; }
   border-radius: 6px;
   backdrop-filter: blur(4px);
   z-index: 2;
+}
+
+/* Responsive general para móviles */
+@media screen and (max-width: 768px) {
+  body {
+  overflow-x: hidden;
+  }
+
+/* Ajustar los títulos principales */
+  h1 {
+    font-size: 1.5rem;
+    margin-left: 10px;
+  }
+
+  .pelicula-card h3 {
+    font-size: 0.85rem;
+  }
 }
