@@ -62,8 +62,9 @@
     }
 
     .navbar-logo img {
-        height: 45px; /* Reducimos un poco el logo en celulares */
+        height: 50px; /* Reducimos un poco el logo en celulares */
         width: 120px;
+        padding-right: 1.5rem;
     }
 
     .navbar-links {
@@ -72,6 +73,6 @@
 
     .nav-btn {
         font-size: 0.8rem;
-        padding: 6px 10px;
+        padding: 5px 8px;
     }
 }
