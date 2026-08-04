@@ -146,6 +146,15 @@ background-color: #f40612;
         width: 220px;
     }
 
+    .detalle-info h1 {
+        line-height: 1.6rem;
+        font-size: 1.6rem;
+    }
+
+    .detalle-info p {
+        line-height: 1.5rem;
+    }
+
     .datos-extra {
         justify-content: center;
     }
