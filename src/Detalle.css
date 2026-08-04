@@ -147,7 +147,7 @@ background-color: #f40612;
     }
 
     .detalle-info h1 {
-        line-height: 1.6rem;
+        line-height: 1.7rem;
         font-size: 1.6rem;
     }
 
@@ -161,5 +161,6 @@ background-color: #f40612;
 
     .actores-grid {
         grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 20px;
     }
 }
