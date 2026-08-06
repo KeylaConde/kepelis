@@ -137,3 +137,8 @@ button:hover { background: #e50914; }
     font-size: 0.85rem;
   }
 }
+
+/* --- Celulares pequeños (menor a 480px) --- */
+@media (max-width: 480px) {
+
+}

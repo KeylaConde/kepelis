@@ -139,28 +139,45 @@
 /* --- Celulares pequeños (menor a 480px) --- */
 @media (max-width: 480px) {
     .navbar {
-        flex-wrap: wrap;
-        padding: 10px 15px;
-        gap: 10px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap; /* Permite que la barra pase a la segunda línea */
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
     }
 
     .navbar-links {
-        gap: 10px;
+        display: flex;
+        gap: 8px;
         margin-top: 12px;
+        margin-left: auto;
     }
 
     .search-form {
         width: 100%;
-        max-width: 100%;
-        margin-top: 5px;
+        border-radius: 20px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        overflow: hidden;
     }
 
     .search-form input {
-        width: 100%; 
+        width: 100%;
+        transition: all 0.3s ease; 
+        font-size: 0.85rem;
+        color: #fff;
     }
 
     /* Efecto dinámico: al hacer clic para escribir, la barra se expande temporalmente */
-    .search-form:focus-within input {
-        width: 140px;
+    .search-form:focus-within {
+        background-color: rgba(255, 255, 255, 0.6);
+        border-color: #e50914;
     }
+
+    .search-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
 }
