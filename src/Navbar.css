@@ -147,11 +147,18 @@
         padding: 10px 12px;
     }
 
+    .navbar-logo, img {
+        max-height: 38px;
+        width: 45%;
+    }
+    
     .navbar-links {
         display: flex;
         gap: 8px;
-        margin-top: 12px;
+        margin-top: 10px;
         margin-left: auto;
+        align-items: center;
+        width: 50%;
     }
 
     .nav-btn {
@@ -160,6 +167,7 @@
 
     .search-form {
         width: 100%;
+        max-width: 100%;
         border-radius: 20px;
         padding: 5px 10px;
         box-sizing: border-box;
