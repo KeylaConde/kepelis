@@ -2,7 +2,7 @@ import React from 'react';
 import logoKepelis from './assets/logo/Kepelis1sinFondo.png';
 import './Navbar.css';
 
-const Navbar = ({ onNavegar, seccionActual }) => {
+const Navbar = ({ onNavegar, seccionActual, onBuscar, busqueda, setBusqueda }) => {
     return (
         <nav className='navbar'>
             {/* Al hacer click en el logo, volvemos al inicio */}
@@ -24,8 +24,18 @@ const Navbar = ({ onNavegar, seccionActual }) => {
                     onClick={() => onNavegar('trailers')}
                     >
                        🍿 Trailers 
-                    </button>
+                </button>
             </div>
+
+            <form onSubmit={onBuscar} className='search-form'>
+                <input
+                type='text'
+                placeholder='Buscar película o serie...'
+                value={busqueda}
+                onChange={(e) => setBusqueda(e.target.value)}
+                />
+                <button type='submit'>🔍</button>
+            </form>
         </nav>
     );
 };

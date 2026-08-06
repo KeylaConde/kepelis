@@ -12,13 +12,52 @@ import './index.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+const genresMap = {
+  28: 'Acción',
+  12: 'Aventura',
+  16: 'Animación',
+  35: 'Comedia',
+  80: 'Crimen',
+  99: 'Documental',
+  18: 'Drama',
+  10751: 'Familiar',
+  14: 'Fantasía',
+  36: 'Historia',
+  27: 'Terror',
+  10749: 'Romance',
+  878: 'Ciencia Ficción',
+  53: 'Suspenso'
+};
+
 function App() {
+  const [busqueda, setBusqueda] = useState('');
+  const [resultadosBusqueda, setResultadosBusqueda] = useState([]);
   const [seccion, setSeccion] = useState('home');
   const [peliculas, setPeliculas] = useState([]);
   const [providerId, setProviderId] = useState(8); // 8 es Netflix por defecto
   const [tipo, setTipo] = useState('movie'); // 'movie' para peliculas, 'tv' para series
   const [peliculaSeleccionada, setPeliculaSeleccionada] = useState(null);
   const BASE_IMG = "https://image.tmdb.org/t/p/w500"; // Esta es la base oficial de TMDB
+
+  const buscarPeliculas = async (e) => {
+    e.preventDefault(); // Evita que la página se recargue al enviar el formulario
+    if (!busqueda.trim()) return;
+
+    const url = `https://api.themoviedb.org/3/search/multi?api_key=e82daa897c788373ebb584472c93e3dc&language=es-ES&query=${encodeURIComponent(busqueda)}`;
+
+    try {
+      const respuesta = await fetch(url);
+      const datos = await respuesta.json();
+
+      const resultadosValidos = (datos.results || []).filter(item => item.media_type === 'movie' || item.media_type === 'tv');
+
+      setResultadosBusqueda(resultadosValidos);
+      setSeccion('busqueda'); // Cambiamos a una sección de búsqueda para mostrar los resultados
+      setPeliculaSeleccionada(null); //Limpiamos detalles si había alguno
+    } catch (error) {
+      console.error("Error al buscar:", error);
+    }
+  };
 
   // Función para manejar la navegación desde la Navbar
   const handleNavegar = (nuevaSeccion) => {
@@ -40,7 +79,7 @@ function App() {
   return (
     <div className="App">
       {/* Agregamos la barra de navegación aquí */}
-      <Navbar onNavegar={handleNavegar} seccionActual={seccion} />
+      <Navbar onNavegar={handleNavegar} seccionActual={seccion} onBuscar={buscarPeliculas} busqueda={busqueda} setBusqueda={setBusqueda}/>
     {peliculaSeleccionada ? (
       <Detalle
       id={peliculaSeleccionada.id}
@@ -49,9 +88,39 @@ function App() {
       />
     ) : (
      <>
+
+     {/* Sección de Búsqueda */}
+     {seccion === 'busqueda' && (
+      <div className='resultados-container'>
+        <h2>Resultados para: "{busqueda}"</h2>
+        <div className='resultados-grid'>
+        {resultadosBusqueda.length > 0 ? (
+          resultadosBusqueda.map((pelicula) => (
+            pelicula.poster_path && (
+              <div
+                key={pelicula.id}
+                className='pelicula-card'
+                onClick={() => setPeliculaSeleccionada({ id: pelicula.id, tipo: pelicula.media_type })}
+                style={{ cursor: 'pointer' }}
+                >
+                  <img
+                  src={`${BASE_IMG}${pelicula.poster_path}`}
+                  alt={pelicula.title || pelicula.name}
+                  style={{ width: '100%', borderRadius: '10px' }}
+                />
+                <h3>{pelicula.title || pelicula.name}</h3>
+              </div>
+            )
+          ))
+        ) : (
+          <p>No se encontraron resultados.</p>
+        )}
+        </div>
+      </div>
+     )}
+
        {seccion === 'home' && (
-        <>
-       
+        <>       
       <h1>Tendencias</h1>
       <div className="hero-carousel-container">
         {peliculas.length > 0 && <HeroCarousel peliculas={peliculas} tipo={tipo} />}
@@ -125,6 +194,13 @@ function App() {
              {/* Insignia de calificación */}
              <div className='pelicula-rating-badge'>
               ⭐ {pelicula.vote_average ? pelicula.vote_average.toFixed(1) : 'N/A'}
+             </div>
+
+             <div className='pelicula-categoria-badge'>
+              {
+                pelicula.genre_ids && pelicula.genre_ids.length > 0
+                ? genresMap[pelicula.genre_ids[0]]
+                : 'General'}
              </div>
 
              <h3>{pelicula.title || pelicula.name}</h3>
