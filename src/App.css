@@ -53,13 +53,25 @@ button:hover { background: #e50914; }
 
 .peliculas-swiper {
   top: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  position: relative;
+  width: 100%;
 }
 
 /* Estilo base de las tarjetas */
 .pelicula-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  width: 100%;
+  height: 100%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   position: relative;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 /* Efecto al pasar el cursor (Hover) */
@@ -71,10 +83,46 @@ button:hover { background: #e50914; }
 
 .pelicula-card img {
     transition: border-radius 0.3s ease;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
 }
 
 .pelicula-card:hover img {
   border-radius: 6px; /* Ajusta ligeramente los bordes */
+}
+
+.pelicula-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.pelicula-metadata {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 5px;
+}
+
+.pelicula-titulo {
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #fff;
+  /* --- Magia del Truncado de Texto (para que no se expanda) --- */
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Número máximo de líneas permitidas (puedes poner 1 o 3) */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Agrega los puntos suspensivos (...) */
+
+  min-height: 2.8em;
 }
 
 .pelicula-rating-badge {
@@ -140,5 +188,27 @@ button:hover { background: #e50914; }
 
 /* --- Celulares pequeños (menor a 480px) --- */
 @media (max-width: 480px) {
+  .pelicula-card {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+  }
 
+  .pelicula-card img {
+    width: 100%;
+    height: auto !important;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pelicula-info {
+    padding: 10px;
+  }
 }

@@ -91,9 +91,9 @@ function App() {
 
      {/* Sección de Búsqueda */}
      {seccion === 'busqueda' && (
-      <div className='resultados-container'>
+      <div className='resultados-container' style={{ padding: '30px' }}>
         <h2>Resultados para: "{busqueda}"</h2>
-        <div className='resultados-grid'>
+        <div className='resultados-grid' style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '20px', marginTop: '20px' }}>
         {resultadosBusqueda.length > 0 ? (
           resultadosBusqueda.map((pelicula) => (
             pelicula.poster_path && (
@@ -188,22 +188,27 @@ function App() {
             <img 
             src={`${BASE_IMG}${pelicula.poster_path}`} 
             alt={pelicula.title || pelicula.name}
-            style={{ width: '100%', borderRadius: '10px' }}
+            style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover'}}
              />
 
-             {/* Insignia de calificación */}
-             <div className='pelicula-rating-badge'>
-              ⭐ {pelicula.vote_average ? pelicula.vote_average.toFixed(1) : 'N/A'}
-             </div>
+            <div className='pelicula-info'>
+              <div className='pelicula-metadata'>
+                {/* Insignia de calificación */}
+                <div className='pelicula-rating-badge'>
+                ⭐ {pelicula.vote_average ? pelicula.vote_average.toFixed(1) : 'N/A'}
+                </div>
 
-             <div className='pelicula-categoria-badge'>
+                <div className='pelicula-categoria-badge'>
               {
                 pelicula.genre_ids && pelicula.genre_ids.length > 0
                 ? genresMap[pelicula.genre_ids[0]]
                 : 'General'}
-             </div>
+                </div>
 
-             <h3>{pelicula.title || pelicula.name}</h3>
+              </div>
+
+             <h3 className='pelicula-titulo'>{pelicula.title || pelicula.name}</h3>
+            </div>
           </div>
         </SwiperSlide>
       ))}

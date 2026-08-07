@@ -147,9 +147,12 @@
         padding: 10px 12px;
     }
 
-    .navbar-logo, img {
-        max-height: 38px;
+    .navbar-logo {
         width: 45%;
+    }
+
+    .navbar-logo img {
+        width: 100%;
     }
     
     .navbar-links {
